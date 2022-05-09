@@ -1,0 +1,74 @@
+/* Headeer Styles */
+.header-wrapper {
+    text-align: center;
+    font-size: 60px;
+    padding-top: 60px;
+    font-family: 'Permanent Marker', serif;
+    border-bottom: double;
+    margin: auto;
+    width: 75%;
+    font-weight: bold;
+}
+
+.header-wrapper p {
+    font-size: 25px;
+    font-family: 'Permanent Marker', serif;
+    font-weight: lighter;
+}
+
+/* Form Styles */
+.form-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 5px;
+    font-family: 'Koulen', serif;
+    text-align: right;
+    width: 75%;
+    align-items: center;
+    margin: auto;
+    border-top: double;
+    padding-top: 20px;
+}
+
+.form-label {
+    font-size: 20px;
+}
+
+.form-wrapper input:invalid {
+    background-color: rgba(255, 0, 0, 0.401);
+    border-color: red;
+    color: whitesmoke !important;
+}
+
+.form-submit {
+    background-color: rgba(128, 128, 128, 0.544);
+    font-size: 20px;
+    width: fit-content;
+    height: 40px;
+    border-radius: 15%;
+    border-style: inset;
+    border-color: gray;
+    justify-self: end;
+    font-family: 'Permanent Marker', serif;
+    font-weight: bold;
+}
+
+.form-submit:hover {
+    background-color: paleturquoise;
+    border-color: paleturquoise;
+    color: rgb(132, 38, 161);
+}
+
+/* Meme Styles*/
+.memes-wrapper {
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 75%;
+    gap: 20px 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: auto;
+    position: relative;
+}

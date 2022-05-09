@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Meme Generator</title>
+        <link href="https://fonts.googleapis.com/css2?family=Koulen&family=Permanent+Marker&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header class="header-wrapper">
+            Make your own meme!
+            <p>To do so, follow the instructions below.</p>
+        </header><br>
+        <div id="meme-container" class="memes-wrapper"></div><br>
+        <form class="form-wrapper" onsubmit="makeMemes(); return false" id="meme-form">
+            <label for="form-pic-url" class="form-label">Provide picture's url: </label>
+            <input type="url" id="form-pic-url" name="form-pic-url" onkeypress="this.style.width = 
+            ((this.value.length + 1) * 8) + 'px';" required>
+            <label for="form-top-text" class="form-label">Provide text to go to top of picture: </label>
+            <input type="text" id="form-top-text" name="form-top-text" onkeypress="this.style.width = 
+            ((this.value.length + 1) * 8) + 'px';" required>
+            <label for="form-bottom-text" class="form-label">Provide text to go to bottom of picture: </label>
+            <input type="text" id="form-bottom-text" name="form-bottom-text" onkeypress="this.style.width = 
+            ((this.value.length + 1) * 8) + 'px';" required>
+            <label for="form-font-family" class="form-label">Choose a font for the text: </label>
+            <select id="form-font-family" name="form-font-family">
+                <option value="Permanent Marker, serif" style="font-family:'Permanent Marker', serif">Pemanent Marker</option>
+                <option value="Koulen, serif" style="font-family: 'Koulen', serif">Koulen</option>
+                <option value="cursive" style="font-family: cursive">Cursive</option>
+                <option value="sans-serif" style="font-family: sans-serif">Sans-Serif</option>
+            </select>
+            <label for="form-text-color" class="form-label">Choose a color for the text: </label>
+            <select id="form-text-color" name="form-text-color">
+                <option value="blue" style="color:blue; background-color: gray;">Blue</option>
+                <option value="red" style="color:red; background-color: gray;">Red</option>
+                <option value="white" style="color:white; background-color: gray;">White</option>
+                <option value="black" style="color:black; background-color: gray;">Black</option>
+            </select>
+            <input type="submit" value="Create meme!" class="form-submit">
+        </form>
+        <div class="meme-wrapper"></div>
+    </body>
+</html>
+
+<script>
+    var top = 10;
+    var bot = 350;
+
+    function makeMemes() {
+        var picUrl = document.getElementById("form-pic-url").value;
+        var topText = document.getElementById("form-top-text").value;
+        var botText = document.getElementById("form-bottom-text").value;
+        var font = document.getElementById("form-font-family").value;
+        var color = document.getElementById("form-text-color").value
+        var memeCount = document.querySelectorAll('#meme').length;
+
+        if((memeCount + 1) % 4 == 1 && memeCount != 0) {
+            top += 400;
+            bot += 420;
+        }
+
+        document.getElementById("meme-container").insertAdjacentHTML("beforeend","<div id='meme' class='meme-class' style='background-image:url(" + picUrl + 
+            "); height:400px; background-size:cover; background-repeat:no-repeat;'><p id='topText' style='position:absolute; top:"+ top + "px; font-family:" + font + "; color:" + color + ";'>" 
+            + topText + "</p><button onclick='remove(this.parentNode)'>Delete Meme!</button><p id='botText' style='position:absolute; top:"+ bot + "px; font-family:" + font + ";  color:" + color + ";'>" 
+            + botText + "</p></div>");
+    }
+
+    function remove(element) {
+        element.parentNode.removeChild(element);
+        top = 10;
+        bot = 350;
+        memeCount = document.querySelectorAll('#meme').length;
+        memes = document.querySelectorAll('#meme');
+
+        for(let i = 0; i < document.querySelectorAll('#meme').length; i++){
+            var meme = document.querySelectorAll('#meme')[i];
+            var topText = meme.firstChild;
+            var botText = meme.lastChild;
+            var font = topText.style.fontFamily;
+            var color = topText.style.color
+
+            if((i + 1) % 4 == 1 && i != 0) {
+            top += 400;
+            bot += 420;
+            }
+
+            topText.setAttribute('style', 'position:absolute; top:'+ top + 'px; font-family:' + font + '; color:' + color + ';');
+            botText.setAttribute('style', 'position:absolute; top:'+ bot + 'px; font-family:' + font + '; color:' + color + ';');
+        }
+    }
+</script>
