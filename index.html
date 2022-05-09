@@ -63,6 +63,12 @@
             "); height:400px; background-size:cover; background-repeat:no-repeat;'><p id='topText' style='position:absolute; top:"+ top + "px; font-family:" + font + "; color:" + color + ";'>" 
             + topText + "</p><button onclick='remove(this.parentNode)'>Delete Meme!</button><p id='botText' style='position:absolute; top:"+ bot + "px; font-family:" + font + ";  color:" + color + ";'>" 
             + botText + "</p></div>");
+        
+        document.getElementById("form-pic-url").value = '';
+        document.getElementById("form-top-text").value = '';
+        document.getElementById("form-bottom-text").value = '';
+        document.getElementById("form-font-family").value = "Permanent Marker, serif";
+        document.getElementById("form-text-color").value = 'blue';
     }
 
     function remove(element) {
